@@ -20,7 +20,7 @@ public class PersonaController : ControllerBase
     [HttpGet]
     public ActionResult<List<string>> GetSaludo()
     {
-        var nombres = Persona.ObtenerNombre(personas);
+        var nombres = Persona.ObtenerNombres(personas);
         var saludos = nombres.Select(nombres => new Persona(nombres).GetSaludo()).ToList();
         return Ok(saludos);
     }

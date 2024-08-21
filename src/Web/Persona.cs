@@ -20,7 +20,7 @@ public class Persona
 
         foreach (var persona in personas)
         {
-            nombres.Add(persona.Nombre)
+            nombres.Add(persona.Nombre);
         }
 
         return nombres;
