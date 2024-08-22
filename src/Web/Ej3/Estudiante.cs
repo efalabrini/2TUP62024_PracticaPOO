@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Ej3
+﻿namespace Web.Ej3
 {
     public class Estudiante : Persona
     {

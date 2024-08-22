@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Ej3;
+using Web.Ej3;
 
-namespace WebApplication1.Controllers
+namespace Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]

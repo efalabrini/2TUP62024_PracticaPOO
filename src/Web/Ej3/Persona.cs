@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Ej3
+namespace Web.Ej3
 {
     public class Persona
     {
