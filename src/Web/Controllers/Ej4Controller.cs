@@ -6,7 +6,7 @@ namespace Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CarController : ControllerBase
+    public class Ej4Controller : ControllerBase
     {
         [HttpPost("crear-y-conducir")]
         public IActionResult CrearYConducir([FromBody] int cantidadCombustible)
