@@ -15,6 +15,11 @@ namespace Web.Controllers
         [HttpPost("CreateStandardAlbum")]
         public IActionResult Create([FromQuery] int pages)
         {
+            if (pages < 0  )
+            {
+                return BadRequest();
+            }
+
             if (pages == 0)
 
             {
@@ -41,14 +46,25 @@ namespace Web.Controllers
         [HttpGet("GetById/{id}")]
         public IActionResult Get([FromRoute] int id)
         {
-            var photobook = Albums.FirstOrDefault(book => book.Id == id);  
+            var photobook = Albums.FirstOrDefault(book => book.Id == id);
+
+            if (photobook == null)
+            {
+                return NotFound($"Photobook with ID {id} not found.");
+            }
+
             return Ok($"{photobook.GetNumberPages()} pages");
         }
+
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             var response = Albums.Select(album => album.GetFormattedDetails()).ToList();
+            if (response == null || response.Count == 0)
+            {
+                return NotFound($"No books were found!");
+            }
             return Ok(response);
         }
 
