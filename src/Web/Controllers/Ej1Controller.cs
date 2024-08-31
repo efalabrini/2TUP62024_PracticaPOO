@@ -1,28 +1,26 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
+﻿using Microsoft.AspNetCore.Mvc;
 using Web.Ej1;
 
-namespace Web.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class Ej1Controller : ControllerBase
+namespace Web.Controllers
 {
-    [HttpGet]
-    public ActionResult Get(string nombre1, string nombre2, string nombre3)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class Ej1Controller : ControllerBase
     {
-        List<Persona> personas = [];
-        personas.Add(new Persona(nombre1));
-        personas.Add(new Persona(nombre2));
-        personas.Add(new Persona(nombre3));
 
-        List<string> saludos = [];
+        [HttpGet]
+        public ActionResult<List<string>> Get([FromQuery] List<string> names) {
+            {
+                var saludo = new List<string>();
 
-        foreach (Persona persona in personas)
-        {
-            saludos.Add(persona.GetSaludo());
+                foreach (var name in names)
+                {
+                    var person = new Persona(name);
+                    saludo.Add(person.GetSaludo(name));
+                }
+
+                return Ok(saludo);
+            }
         }
-
-        return Ok(saludos);
     }
 }
