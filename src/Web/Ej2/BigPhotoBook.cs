@@ -1,10 +1,6 @@
 ﻿namespace Web.Ej2
 {
-    public class BigPhotoBook : PhotoBook
+    public class BigPhotoBook
     {
-        public BigPhotoBook() : base(64) 
-        {
-
-        }
     }
 }
