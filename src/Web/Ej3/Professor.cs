@@ -1,10 +1,9 @@
 namespace Web.Ej3
 {
 
-    public class Proffesor: Person{
+    public class Professor: Person{
 
-        public string name{get;set;}
-        public Proffesor(string Name){
+        public Professor(string Name) : base(Name){
             name=Name;
         }
         public string Explain(){
