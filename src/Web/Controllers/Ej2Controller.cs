@@ -1,47 +1,50 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Web.Ej2;
 
 namespace Web.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
+
     public class Ej2Controller : ControllerBase
     {
-        static List<PhotoBook> photoBooks = new List<PhotoBook>();
+        static List<PhotoBook> album = new List<PhotoBook>();
 
-        [HttpPost("[action]")]
-        public ActionResult<string> AlbumEstandar([FromBody] int pages = 16)
+        [HttpPost("AlbumEstandar")]
+        public IActionResult AlbumEstandar(int pages = 16)
         {
-            photoBooks.Add(new PhotoBook(pages));
-            return Ok($"se creo album estandar con {pages} paginas");
+            album.Add(new PhotoBook(pages));
+            return Ok($"Se creo el album con {pages} paginas");
         }
 
-        [HttpPost("[action]")]
-        public ActionResult<string> AlbumGrande()
+        [HttpPost("AlbumGrande")]
+        public IActionResult AlbumGrande()
         {
-            photoBooks.Add(new BigPhotoBook());
-            return Ok("se creo album grande de 64 paginas");
+            album.Add(new BigPhotoBook());
+            return Ok("Se creo un album con 64 paginas");
         }
 
-        [HttpGet("[action]/{id}")]
-        public ActionResult<int> GetNumeroDePaginas(int id)
-        {
-            PhotoBook album = photoBooks.Find(p => p.id == id);
 
-            if (album != null)
+        [HttpGet("IdenticarPage/{id}")]
+        public IActionResult IdentificarPage(int id) 
+        {
+           var albumEncontrado = album.FirstOrDefault(a => a.Id == id);
+            if (albumEncontrado == null)
             {
-                return Ok(album.GetNumeroDePaginas());
+                return NotFound($"Albun con ID {id} no encontrado");
             }
-            else
-            {
-                return NotFound($"no se econtro album con el siguiente {id}");
-            }
+
+            return Ok(albumEncontrado);
+
         }
-        [HttpGet("[action]")]
-        public ActionResult<List<PhotoBook>> getAllBooks()
+
+
+        [HttpGet("RetornarAlbum")]
+        public IActionResult RetornarAlbum()
         {
-            return photoBooks;
+            return Ok(album);
         }
+
+
     }
 }
