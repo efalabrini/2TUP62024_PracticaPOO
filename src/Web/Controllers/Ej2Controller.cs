@@ -10,35 +10,35 @@ public class Ej2Controller : ControllerBase
 {
     private static List<PhotoBook> albums = new List<PhotoBook>();
 
-        // Crear un álbum estándar con un número opcional de páginas
+        //crear albun estandar
         [HttpPost("crearAlbumEstandar")]
         public IActionResult CrearAlbumEstandar(int? numPages)
         {
-            PhotoBook album;
+            PhotoBook album; //esto lo que hace es que en album solo se almacene un objeto de la clase PhotoBook o una clase derivada
 
             if (numPages.HasValue)
             {
-                album = new PhotoBook(numPages.Value);  // Crear álbum con el número especificado de páginas
+                album = new PhotoBook(numPages.Value);  
             }
             else
             {
-                album = new PhotoBook();  // Crear álbum con 16 páginas por defecto
+                album = new PhotoBook();  
             }
 
-            albums.Add(album);  // Añadir el álbum a la lista
+            albums.Add(album);  
             return Ok("Álbum estándar creado.");
         }
 
-        // Crear un álbum grande de 64 páginas
+        //crear albun grande
         [HttpPost("crearAlbumGrande")]
         public IActionResult CrearAlbumGrande()
         {
-            var album = new BigPhotoBook();  // Crear álbum grande
-            albums.Add(album);  // Añadir el álbum a la lista
+            var album = new BigPhotoBook();  
+            albums.Add(album);  
             return Ok("Álbum grande creado.");
         }
 
-        // Consultar el número de páginas del primer álbum
+        //retonar paginas
         [HttpGet("consultarNumeroPaginas")]
         public IActionResult ConsultarNumeroPaginas()
         {
@@ -47,14 +47,14 @@ public class Ej2Controller : ControllerBase
                 return NotFound("No hay álbumes creados.");
             }
 
-            int numPages = albums[0].GetNumberPages();  // Obtener el número de páginas del primer álbum
+            int numPages = albums[0].GetNumberPages(); 
             return Ok(numPages);
         }
 
-        // Retornar el número de álbumes creados
+        //Retornar albun
         [HttpGet("retornarTodosLosAlbumes")]
         public IActionResult RetornarTodosLosAlbumes()
         {
-            return Ok(albums.Count);  // Retornar la cantidad de álbumes creados
+            return Ok(albums.Count); 
         }
 }
