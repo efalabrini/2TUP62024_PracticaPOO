@@ -97,7 +97,7 @@ public class Ej5Controlador : ControllerBase
     public IActionResult Batalla()
     {
         string descripcionDeBatalla = "";
-       foreach (var enemigo in listaEnemigos.ToList()) //sirve para hacer una copia para que no haya modificaciones durante la batalla
+       foreach (var enemigo in listaEnemigos.ToList()) //sirve para hacer una copia para que no haya modificaciones durante la batallaa
        {
             while (enemigo.Vida > 0 && listaPersonajes.Any()) 
                 {
