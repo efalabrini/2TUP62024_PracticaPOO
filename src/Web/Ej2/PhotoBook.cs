@@ -2,32 +2,27 @@
 {
     public class PhotoBook
     {
+        public int Id { get; set; }
+        private static int count = 1;
         public int numPages { get; set; }
-        public int id { get; }
-
-        static int cont = 0;
-
-
-        public PhotoBook() : this(16)
+        public PhotoBook()
         {
-
-
+            numPages = 16;
+            CreateId();
         }
-
-        public PhotoBook(int cantPages)
+        public PhotoBook(int pages)
         {
-            numPages = cantPages;
-            id = GetId();
+            numPages = pages;
+            CreateId();
         }
-
-        public int GetNumeroDePaginas()
+        public void CreateId()
+        {
+            Id = count;
+            count++;
+        }
+        public int GetNumPages()
         {
             return numPages;
-        }
-
-        static int GetId()
-        {
-            return ++cont;
-        }
+        }    
     }
 }
