@@ -13,7 +13,7 @@ public class Ej1Controller : ControllerBase
     {
         List<Persona> personas = [];
         personas.Add(new Persona(nombre1));
-        personas.Add(new Persona(nombre2));
+        personas.Add(new Persona(nombre2));  
         personas.Add(new Persona(nombre3));
 
         List<string> saludos = [];
@@ -24,5 +24,7 @@ public class Ej1Controller : ControllerBase
         }
 
         return Ok(saludos);
+
+
     }
 }
