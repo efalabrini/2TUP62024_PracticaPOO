@@ -13,21 +13,20 @@ namespace Web.Controllers
 
     public class Ejr2Controller : Controller
     {
-        // Lista estática para almacenar los álbumes
         private static List<PhotoBook> photoBooks = new List<PhotoBook>();
         private static int currentId = 1;
 
-        // POST: api/PhotoBook/CreateStandard
+        
         [HttpPost("CreateStandard")]
         public IActionResult CreateStandardPhotoBook([FromQuery] int? numPages)
         {
-            // Crear un álbum con el número de páginas especificado o por defecto 16
+            
             PhotoBook newPhotoBook = numPages.HasValue ? new PhotoBook(numPages.Value) : new PhotoBook();
             photoBooks.Add(newPhotoBook);
             return Ok(new { Id = currentId++, Pages = newPhotoBook.GetNumberPages() });
         }
 
-        // POST: api/PhotoBook/CreateBig
+  
         [HttpPost("CreateBig")]
         public IActionResult CreateBigPhotoBook()
         {
@@ -36,7 +35,7 @@ namespace Web.Controllers
             return Ok(new { Id = currentId++, Pages = newBigPhotoBook.GetNumberPages() });
         }
 
-        // GET: api/PhotoBook/GetPages/5
+     
         [HttpGet("GetPages/{id}")]
         public IActionResult GetNumberOfPages(int id)
         {
@@ -49,7 +48,7 @@ namespace Web.Controllers
             return Ok(photoBook.GetNumberPages());
         }
 
-        // GET: api/PhotoBook/GetAll
+      
         [HttpGet("GetAll")]
         public IActionResult GetAllPhotoBooks()
         {
