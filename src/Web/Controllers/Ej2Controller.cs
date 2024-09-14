@@ -50,7 +50,7 @@ public class Ej2Controller : Controller
         }
 
         if (i == albums.Count) { 
-            return NotFound($"No se ha encontrado el album con la id: {id}"); 
+            return NotFound($"No se ha encontrado el álbum con la id: {id}"); 
         }
 
         return Ok(albums[i].GetNumberPages());
