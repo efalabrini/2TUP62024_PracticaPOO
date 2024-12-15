@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Web.Ej2;
 
 namespace Web.Controllers
@@ -14,34 +13,37 @@ namespace Web.Controllers
         public ActionResult<string> AlbumEstandar([FromBody] int pages = 16)
         {
             photoBooks.Add(new PhotoBook(pages));
-            return Ok($"se creo album estandar con {pages} paginas");
+            return Ok($"Se creo un albun con {pages} paginas (estandar)");
         }
 
         [HttpPost("[action]")]
         public ActionResult<string> AlbumGrande()
         {
             photoBooks.Add(new BigPhotoBook());
-            return Ok("se creo album grande de 64 paginas");
+            return Ok("Se creo un album grande");
         }
 
-        [HttpGet("[action]/{id}")]
-        public ActionResult<int> GetNumeroDePaginas(int id)
+        [HttpGet("[action] / {id}")]
+        public ActionResult<int> GetNumberPages(int id) 
         {
             PhotoBook album = photoBooks.Find(p => p.id == id);
 
             if (album != null)
             {
-                return Ok(album.GetNumeroDePaginas());
+                return Ok(album.GetNumberPages());  
             }
-            else
+            else 
             {
-                return NotFound($"no se econtro album con el siguiente {id}");
+                return NotFound($"no album con la id: {id}");
             }
         }
+
         [HttpGet("[action]")]
-        public ActionResult<List<PhotoBook>> getAllBooks()
+        public ActionResult<List<PhotoBook>> GetAllPhotos() 
         {
             return photoBooks;
         }
+
+
     }
 }
